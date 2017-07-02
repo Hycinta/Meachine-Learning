@@ -125,6 +125,11 @@ class KNN {
 		return sum / m.length;
 	}
 
+	/**
+	 * option 2 to this class: findMajorityClass
+	 * @param ss
+	 * @return
+	 */
 	private static String findMajorityClass1(String[] ss) {
 		int countY = 0;
 		int countN = 0;
@@ -138,6 +143,9 @@ class KNN {
 		return countN > countY ? "NO" : countN < countY ? "YES" : ss[0];
 	}
 
+	/*
+	 * distance L2
+	 */
 	public static void disL2() throws IOException {
 		int q1 = 0;
 		int anstruemaj1 = 0;
@@ -230,6 +238,10 @@ class KNN {
 
 	}
 
+	/**
+	 * distance L1
+	 * @throws IOException
+	 */
 	public static void disL1() throws IOException {
 		int q1 = 0;
 		int anstruemaj1 = 0;
@@ -331,67 +343,7 @@ class KNN {
 	}
 	
 	
-	public static void BruteForce(double[][] mat) {
-		double [] v=new double[54];
-		int q1 = 0;
-		int anstruemaj1 = 0;
-		int anstruemaj = 0;
-		double[] query = null;
-		String majClass = null;
-		String majClass1 = null;
-		int maj = 0;
-		int maj1 = 0;
-		int colum = 55;
-		int ans = 54;
-		int row = 2795; // 7372;
-		int learn = 2000;// 6372;
-		int k = 100;// # of neighbours
-		double a, b, a_ans = 0, b_ans = 0;
-		int mistake1 = 0, mistake2 = 0, mistake_ans = Integer.MAX_VALUE;
-		for (int i = 0; i < learn; i++) {
-			for (int j = i + 1; j < learn; j++) {
-				if (mat[i][ans] == 1 && mat[i][ans] == mat[j][ans]) {
-					a = (mat[i][1] - mat[j][1]) / ((mat[i][0] - mat[j][0]));
-					b = -a * mat[i][0] + mat[i][1];
-					
 
-					for (int r = 0; r < mat.length; r++) {
-						if ((mat[r][1] - a * mat[r][0]) > b) {
-							if (mat[r][2] == 1) {
-								mistake1++;
-							} else {
-								mistake2++;
-							}
-						} else {
-							if (mat[r][2] == 1) {
-								mistake2++;
-							} else {
-								mistake1++;
-							}
-						}
-
-						// System.out.println(mistake2);
-					}
-					// System.out.println(mistake_ans);
-					// System.out.println(mistake1);
-					// System.out.println(mistake2);
-
-					if (mistake_ans > Math.min(mistake1, mistake2)) {
-						mistake_ans = Math.min(mistake1, mistake2);
-						a_ans = a;
-						b_ans = b;
-						// System.out.println("y=" + a_ans + "x" + " + " +
-						// b_ans);
-						// System.out.println("i:" +i+" j: "+j);
-						// System.out.println(mistake_ans);
-					}
-					mistake1 = 0;
-					mistake2 = 0;
-				}
-			}
-		}
-		System.out.println("BruteForce: y=" + a_ans + "x" + " + " + b_ans +" mistake: "+mistake_ans);
-	}
 
 	public static void main(String args[]) throws IOException {
 
